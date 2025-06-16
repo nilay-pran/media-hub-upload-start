@@ -68,32 +68,32 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Video CMS Upload Center</h1>
-          <p className="text-xl text-muted-foreground mb-6">
+    <div className="min-vh-100 bg-light p-4">
+      <div className="container-fluid" style={{ maxWidth: '1200px' }}>
+        <div className="text-center mb-5">
+          <h1 className="display-4 fw-bold mb-4">Video CMS Upload Center</h1>
+          <p className="lead text-muted mb-4">
             Choose your upload type to get started
           </p>
-          <Button 
+          <button 
             onClick={() => setIsModalOpen(true)}
-            size="lg"
-            className="mb-8"
+            className="btn btn-primary btn-lg mb-5"
           >
             Start Upload Process
-          </Button>
+          </button>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div className="row g-4 justify-content-center">
           {uploadOptions.map((option) => (
-            <UploadCard
-              key={option.type}
-              title={option.title}
-              description={option.description}
-              icon={option.icon}
-              onClick={() => {}}
-              hideButton={true}
-            />
+            <div key={option.type} className="col-6 col-md-3">
+              <UploadCard
+                title={option.title}
+                description={option.description}
+                icon={option.icon}
+                onClick={() => {}}
+                hideButton={true}
+              />
+            </div>
           ))}
         </div>
       </div>

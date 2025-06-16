@@ -1,5 +1,4 @@
 
-import { Card, CardContent } from "@/components/ui/card";
 import { LucideIcon } from "lucide-react";
 
 interface UploadCardProps {
@@ -12,17 +11,44 @@ interface UploadCardProps {
 
 const UploadCard = ({ title, description, icon: Icon, onClick, hideButton = false }: UploadCardProps) => {
   return (
-    <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full" onClick={onClick}>
-      <CardContent className="p-4 text-center h-full flex flex-col justify-center">
-        <div className="mb-3 flex justify-center">
-          <div className="p-2 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
-            <Icon className="h-6 w-6 text-primary" />
+    <div 
+      className="card h-100 shadow-sm border-0" 
+      onClick={onClick}
+      style={{ 
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        ':hover': {
+          transform: 'translateY(-2px)',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.12)'
+        }
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-2px)';
+        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.12)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '';
+      }}
+    >
+      <div className="card-body text-center d-flex flex-column justify-content-center p-4">
+        <div className="mb-3 d-flex justify-content-center">
+          <div 
+            className="rounded-circle d-flex align-items-center justify-content-center"
+            style={{
+              width: '48px',
+              height: '48px',
+              backgroundColor: 'rgba(13, 110, 253, 0.1)',
+              transition: 'background-color 0.3s ease'
+            }}
+          >
+            <Icon size={24} style={{ color: '#0d6efd' }} />
           </div>
         </div>
-        <h3 className="text-sm font-semibold mb-1">{title}</h3>
-        <p className="text-muted-foreground text-xs">{description}</p>
-      </CardContent>
-    </Card>
+        <h6 className="card-title fw-semibold mb-2">{title}</h6>
+        <p className="card-text text-muted small">{description}</p>
+      </div>
+    </div>
   );
 };
 
