@@ -16,11 +16,7 @@ const UploadCard = ({ title, description, icon: Icon, onClick, hideButton = fals
       onClick={onClick}
       style={{ 
         cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        ':hover': {
-          transform: 'translateY(-2px)',
-          boxShadow: '0 4px 8px rgba(0,0,0,0.12)'
-        }
+        transition: 'all 0.3s ease'
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-2px)';
