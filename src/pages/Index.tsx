@@ -1,67 +1,69 @@
 
 import { Video, Music, Library, Megaphone, Layers, Film, Upload, Link } from "lucide-react";
 import UploadCard from "@/components/UploadCard";
-import { useToast } from "@/hooks/use-toast";
+import UploadModal from "@/components/UploadModal";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const Index = () => {
-  const { toast } = useToast();
-
-  const handleUploadClick = (type: string) => {
-    toast({
-      title: `${type} Upload`,
-      description: `Starting ${type.toLowerCase()} upload process...`,
-    });
-    // Here you would typically navigate to the specific upload page or open a modal
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const uploadOptions = [
     {
       title: "Video",
       description: "Upload video files for your content library",
       icon: Video,
-      type: "Video"
+      type: "Video",
+      accept: "video/*"
     },
     {
       title: "Audio",
       description: "Upload audio files and podcasts",
       icon: Music,
-      type: "Audio"
+      type: "Audio",
+      accept: "audio/*"
     },
     {
       title: "Library",
       description: "Manage your existing media library",
       icon: Library,
-      type: "Library"
+      type: "Library",
+      accept: "*/*"
     },
     {
       title: "Campaign",
       description: "Create and upload campaign content",
       icon: Megaphone,
-      type: "Campaign"
+      type: "Campaign",
+      accept: "*/*"
     },
     {
       title: "Slates",
       description: "Upload slate graphics and overlays",
       icon: Layers,
-      type: "Slates"
+      type: "Slates",
+      accept: "image/*"
     },
     {
       title: "Reel/Shorts",
       description: "Upload short-form vertical content",
       icon: Film,
-      type: "Reel/Shorts"
+      type: "Reel/Shorts",
+      accept: "video/*"
     },
     {
       title: "Custom Uploads",
       description: "Upload custom file types and formats",
       icon: Upload,
-      type: "Custom Uploads"
+      type: "Custom Uploads",
+      accept: "*/*"
     },
     {
       title: "Embed",
       description: "Embed content from external sources",
       icon: Link,
-      type: "Embed"
+      type: "Embed",
+      accept: "*/*"
     }
   ];
 
@@ -70,23 +72,37 @@ const Index = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4">Video CMS Upload Center</h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground mb-6">
             Choose your upload type to get started
           </p>
+          <Button 
+            onClick={() => setIsModalOpen(true)}
+            size="lg"
+            className="mb-8"
+          >
+            Start Upload Process
+          </Button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           {uploadOptions.map((option) => (
             <UploadCard
               key={option.type}
               title={option.title}
               description={option.description}
               icon={option.icon}
-              onClick={() => handleUploadClick(option.type)}
+              onClick={() => {}}
+              hideButton={true}
             />
           ))}
         </div>
       </div>
+
+      <UploadModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        uploadOptions={uploadOptions}
+      />
     </div>
   );
 };
