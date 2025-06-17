@@ -75,12 +75,20 @@ const Index = () => {
           <p className="lead text-muted mb-4">
             Choose your upload type to get started
           </p>
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="btn btn-primary btn-lg mb-5"
-          >
-            Start Upload Process
-          </button>
+          <div className="d-flex gap-3 justify-content-center mb-5">
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="btn btn-primary btn-lg"
+            >
+              Start Upload Process
+            </button>
+            <button 
+              onClick={() => window.location.href = '/media'}
+              className="btn btn-outline-primary btn-lg"
+            >
+              View Media Library
+            </button>
+          </div>
         </div>
         
         <div className="row g-4 justify-content-center">
